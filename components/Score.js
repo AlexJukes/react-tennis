@@ -14,6 +14,7 @@ Score.propTypes = {
 
 const mapStateToProps = state => {
   return {
+    
 
   }
 }
