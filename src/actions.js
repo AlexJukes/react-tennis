@@ -1,14 +1,14 @@
-export const UPDATE_PLAYER_1_SCORE = 'UPDATE_PLAYER_1_SCORE'
-export const UPDATE_PLAYER_2_SCORE = 'UPDATE_PLAYER_2_SCORE'
+export const INCREASE_PLAYER_1_SCORE = 'INCREASE_PLAYER_1_SCORE'
+export const INCREASE_PLAYER_2_SCORE = 'INCREASE_PLAYER_2_SCORE'
 export const RESET_GAME = 'RESET_GAME'
 export const DECLARE_WINNER = 'DECLARE_WINNER'
 
-export function updatePlayer1Score(updatedScore) {
-  return { type: UPDATE_PLAYER_1_SCORE, updatedScore }
+export function Player1Score(score) {
+  return { type: INCREASE_PLAYER_1_SCORE, score }
 }
 
-export function updatePlayer2Score(updatedScore) {
-  return { type: UPDATE_PLAYER_2_SCORE, updatedScore }
+export function Player2Score(score) {
+  return { type: INCREASE_PLAYER_2_SCORE, score }
 }
 
 export function resetScore() {

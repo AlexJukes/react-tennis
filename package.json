@@ -12,10 +12,11 @@
     "redux": "^3.7.2"
   },
   "devDependencies": {
+    "jest": "^21.2.1",
     "webpack": "^3.8.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build": "babel src -d lib"
   },
   "author": "ALJ",
