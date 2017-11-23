@@ -3,13 +3,14 @@ import {
   SCORE_POINT,
   DECLARE_WINNER
 } from './actions'
-import {scorePoint} from './scoreCalculator'
+import {addScore} from './scoreCalculator'
+
+console.log(addScore)
 
 function score(state = {}, action) {
-  console.log('>>>', state)
   switch (action.type) {
     case SCORE_POINT:
-      return scorePoint(action.player)
+      return addScore(action.player, state)
     default:
       return state
   }

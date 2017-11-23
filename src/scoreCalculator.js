@@ -1,6 +1,6 @@
 import {declareWinner} from './actions'
 
-export function scorePoint(player = '', score = {}) {
+export function addScore(player = '', score = {}) {
 
   const opposingPlayer = player === 'player1' ? 'player2' : 'player1'
   const deuce = score[player] === '40' && score[opposingPlayer] === '40'
