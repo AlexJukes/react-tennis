@@ -9,12 +9,12 @@ const Score = ( { player, currentScore }) => (
 
 Score.propTypes = {
   player: PropTypes.string.isRequired,
-  currentScore: PropTypes.num.isRequired
+  currentScore: PropTypes.string.isRequired
 }
 
 const mapStateToProps = state => {
   return {
-    
+
 
   }
 }

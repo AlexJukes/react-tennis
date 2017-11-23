@@ -1,17 +1,15 @@
 import { combineReducers } from 'redux'
 import {
-  INCREASE_PLAYER_1_SCORE,
-  INCREASE_PLAYER_2_SCORE,
+  SCORE_POINT,
   DECLARE_WINNER
 } from './actions'
+import {scorePoint} from './scoreCalculator'
 
 function score(state = {}, action) {
   console.log('>>>', state)
   switch (action.type) {
-    case INCREASE_PLAYER_1_SCORE:
-      state.player1 = action.updatedScore
-    case INCREASE_PLAYER_2_SCORE:
-      state.player2 = action.updatedScore
+    case SCORE_POINT:
+      return scorePoint(action.player)
     default:
       return state
   }

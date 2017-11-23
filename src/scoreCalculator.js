@@ -1,12 +1,17 @@
+import {declareWinner} from './actions'
+
 export function scorePoint(player = '', score = {}) {
 
-  const deuce = score.player1 === '40' && score.player2 === '40'
   const opposingPlayer = player === 'player1' ? 'player2' : 'player1'
-
-  // if the opposing player has advantage, return their score to 40
+  const deuce = score[player] === '40' && score[opposingPlayer] === '40'
+  const gamePoint = (score[player] === 'adv' || (score[player] === '40' && !deuce ))
 
   if(score[opposingPlayer] === 'adv') {
     return {player1: '40', player2: '40'}
+  }
+
+  if(gamePoint) {
+    return declareWinner(player)
   }
 
   function scoreIncrease(currentScore) {

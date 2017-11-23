@@ -2,9 +2,9 @@ import { createStore } from 'redux'
 import tennisApp from './reducers'
 
 
-export const INITIAL_SCORE = 0;
+export const INITIAL_SCORE = '0';
 
-const initialState = {
+export const initialState = {
   score: {
     player1: INITIAL_SCORE,
     player2: INITIAL_SCORE
@@ -15,8 +15,7 @@ const initialState = {
 let store = createStore(tennisApp, initialState)
 
 import {
-  updatePlayer1Score,
-  updatePlayer2Score,
+  scorePoint,
   declareWinner
 } from './actions'
 
@@ -30,9 +29,11 @@ const unsubscribe = store.subscribe(() =>
 )
 
 // Dispatch some actions
-store.dispatch(updatePlayer1Score(15))
-store.dispatch(updatePlayer2Score(30))
-store.dispatch(declareWinner('player1'))
+store.dispatch(scorePoint('player1', initialState))
+store.dispatch(scorePoint('player2', store.getState()))
+store.dispatch(scorePoint('player2', store.getState()))
+store.dispatch(scorePoint('player2', store.getState()))
+store.dispatch(declareWinner('player2', store.getState()))
 
 // Stop listening to state updates
 unsubscribe()

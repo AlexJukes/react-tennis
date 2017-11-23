@@ -1,4 +1,5 @@
 import {scorePoint} from '../src/scoreCalculator.js'
+import {DECLARE_WINNER} from '../src/actions'
 
 const initialScore = {player1: '0', player2: '0'}
 
@@ -44,8 +45,20 @@ describe('scoreIncrease', () => {
     const deuce = {player1: '40', player2: '40'}
 
     //act and assert
-    expect(scorePoint('player1', advantagePlayer2)).toEqual(deuce)
     expect(scorePoint('player2', advantagePlayer1)).toEqual(deuce)
+    expect(scorePoint('player1', advantagePlayer2)).toEqual(deuce)
   })
+});
+
+describe('winning the game', () => {
+
+  it('should declare the winner of the game', () => {
+    // arrange
+    const finalPoint = {player1: '40', player2: '0'}
+    const winAction = { type: DECLARE_WINNER, winner: 'player1' }
+
+    //act
+    expect(scorePoint('player1', finalPoint)).toEqual(winAction)
+  });
 
 });
