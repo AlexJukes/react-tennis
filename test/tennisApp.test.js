@@ -1,5 +1,5 @@
 import { createStore } from 'redux'
-import { scorePoint, declareWinner } from '../src/actions'
+import { scorePoint } from '../src/actions'
 import tennisApp from '../src/reducers'
 
 const initialState = {
@@ -28,6 +28,14 @@ const advantagePlayer1 = Object.assign(
       player1: 'adv',
       player2: '40'
     }
+  }
+)
+
+const player1Win = Object.assign(
+  {},
+  initialState,
+  {
+    winner: 'player1'
   }
 )
 
@@ -101,6 +109,14 @@ describe('scoreIncrease', () => {
 
     //act and assert
     expect(getWinner()).toEqual('player1')
+  });
+
+  it('should throw an error if a point has been scored after a game has been won', () => {
+    //arrange
+    store = createStore(tennisApp, player1Win)
+
+    //act and assert
+    expect(() => store.dispatch(scorePoint('player1'))).toThrow('This game has already been won!')
   });
 
 });
