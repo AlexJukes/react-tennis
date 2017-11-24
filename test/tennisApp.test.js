@@ -77,13 +77,13 @@ describe('scoreIncrease', () => {
   });
 
   it('gives advantage to the player who scored if players are tied on deuce', () => {
-
+    //arange
     store = createStore(tennisApp, deuce)
 
     //act
     store.dispatch(scorePoint('player1'))
 
-    //act and assert
+    //assert
     expect(getPlayer1Score()).toEqual('adv')
     expect(getPlayer2Score()).toEqual('40')
   })
@@ -95,7 +95,7 @@ describe('scoreIncrease', () => {
     //act
     store.dispatch(scorePoint('player2'))
 
-    //act and assert
+    //assert
     expect(getPlayer1Score()).toEqual('40')
     expect(getPlayer2Score()).toEqual('40')
   })
@@ -107,7 +107,7 @@ describe('scoreIncrease', () => {
     //act
     store.dispatch(scorePoint('player1'))
 
-    //act and assert
+    //assert
     expect(getWinner()).toEqual('player1')
   });
 
