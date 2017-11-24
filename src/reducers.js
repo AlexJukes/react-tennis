@@ -3,31 +3,15 @@ import {
   SCORE_POINT,
   DECLARE_WINNER
 } from './actions'
-import {addScore} from './scoreCalculator'
+import {calculateScore} from './scoreCalculator'
 
-console.log(addScore)
-
-function score(state = {}, action) {
+function tennisApp(state= initialState, action) {
   switch (action.type) {
     case SCORE_POINT:
-      return addScore(action.player, state)
+      return calculateScore(action.player, state)
     default:
       return state
+    }
   }
-}
-
-function winner(state = null, action) {
-  switch (action.type) {
-    case DECLARE_WINNER:
-      return action.winner
-    default:
-      return state
-  }
-}
-
-const tennisApp = combineReducers({
-  score,
-  winner
-})
 
 export default tennisApp
