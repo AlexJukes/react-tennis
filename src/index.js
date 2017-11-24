@@ -33,7 +33,7 @@ store.dispatch(scorePoint('player1', initialState))
 store.dispatch(scorePoint('player2', store.getState()))
 store.dispatch(scorePoint('player2', store.getState()))
 store.dispatch(scorePoint('player2', store.getState()))
-store.dispatch(declareWinner('player2', store.getState()))
+store.dispatch(scorePoint('player2', store.getState()))
 
 // Stop listening to state updates
 unsubscribe()

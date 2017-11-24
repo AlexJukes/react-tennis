@@ -1,4 +1,4 @@
-import {scorePoint} from '../src/scoreCalculator.js'
+import {addScore} from '../src/scoreCalculator.js'
 import {DECLARE_WINNER} from '../src/actions'
 
 const initialScore = {player1: '0', player2: '0'}
@@ -11,8 +11,8 @@ describe('scoreIncrease', () => {
     const player2Scored = {player1: '0', player2: '15'}
 
     //act and assert
-    expect(scorePoint('player1', initialScore)).toEqual(player1Scored)
-    expect(scorePoint('player2', initialScore)).toEqual(player2Scored)
+    expect(addScore('player1', initialScore)).toEqual(player1Scored)
+    expect(addScore('player2', initialScore)).toEqual(player2Scored)
   });
 
   it('calculates basic scoring correctly', () => {
@@ -22,9 +22,9 @@ describe('scoreIncrease', () => {
     const thirdPoint = {player1: '40', player2: '0'}
 
     //act and assert
-    expect(scorePoint('player1', initialScore)).toEqual(firstPoint)
-    expect(scorePoint('player1', firstPoint)).toEqual(secondPoint)
-    expect(scorePoint('player1', secondPoint)).toEqual(thirdPoint)
+    expect(addScore('player1', initialScore)).toEqual(firstPoint)
+    expect(addScore('player1', firstPoint)).toEqual(secondPoint)
+    expect(addScore('player1', secondPoint)).toEqual(thirdPoint)
   });
 
   it('gives advantage to the player who scored if players are tied on deuce', () => {
@@ -34,8 +34,8 @@ describe('scoreIncrease', () => {
     const advantagePlayer2 = {player1: '40', player2: 'adv'}
 
     //act and assert
-    expect(scorePoint('player1', deuce)).toEqual(advantagePlayer1)
-    expect(scorePoint('player2', deuce)).toEqual(advantagePlayer2)
+    expect(addScore('player1', deuce)).toEqual(advantagePlayer1)
+    expect(addScore('player2', deuce)).toEqual(advantagePlayer2)
   })
 
   it('returns the score to deuce if the player without an advantage scores', () => {
@@ -45,8 +45,8 @@ describe('scoreIncrease', () => {
     const deuce = {player1: '40', player2: '40'}
 
     //act and assert
-    expect(scorePoint('player2', advantagePlayer1)).toEqual(deuce)
-    expect(scorePoint('player1', advantagePlayer2)).toEqual(deuce)
+    expect(addScore('player2', advantagePlayer1)).toEqual(deuce)
+    expect(addScore('player1', advantagePlayer2)).toEqual(deuce)
   })
 });
 
@@ -58,7 +58,7 @@ describe('winning the game', () => {
     const winAction = { type: DECLARE_WINNER, winner: 'player1' }
 
     //act
-    expect(scorePoint('player1', finalPoint)).toEqual(winAction)
+    expect(addScore('player1', finalPoint)).toEqual(winAction)
   });
 
 });

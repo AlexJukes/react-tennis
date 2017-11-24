@@ -19,21 +19,13 @@ export function addScore(player = '', score = {}) {
     return deuce ? 'adv' : scoreTable[currentScore]
   }
 
-  function player1Scores() {
+  function playerScores() {
     return Object.assign(
       {},
       score,
-      {player1: scoreIncrease(score.player1)}
+      {[player]: scoreIncrease(score[player])}
     )
   };
 
-  function player2Scores() {
-    return Object.assign(
-      {},
-      score,
-      {player2: scoreIncrease(score.player2)}
-    )
-  };
-
-  return player === 'player1' ? player1Scores() : player2Scores()
+  return playerScores()
 }
