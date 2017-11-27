@@ -2,27 +2,33 @@ const path = require('path');
 
 module.exports = {
   context: path.join(__dirname, 'src'),
-  entry: ]
-    './main.js',
-  ],
+  entry: ['./index.js'],
   output: {
     path: path.join(__dirname, 'www'),
-    filename: 'bundle.js',
+    filename: 'bundle.js'
   },
   module: {
+    loaders: [
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/
+      }, {
+        test: /\.jsx?$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/
+      }
+    ],
     rules: [
       {
-        test: exclude /\.js$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: [
-          'babel-loader',
-        ],
-      },
-    ],
+        use: ['babel-loader']
+      }
+    ]
   },
   resolve: {
-    modules: [
-      path.join(__dirname, 'node_modules'),
-    ],
-  },
+    modules: [path.join(__dirname, 'node_modules')],
+    extensions: ['.js', '.jsx', '.json', '*']
+  }
 };

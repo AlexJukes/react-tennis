@@ -1,6 +1,16 @@
-const express = require('express')
-const app = express()
+import React from 'react'
+import Header from './containers/header'
+import Scoreboard from './Scoreboard.jsx'
 
-app.get('/', (req, res) => res.send('Hello World!'))
+const App = () => {
+  return
+    <div>
+      <div>
+        Hello Nat!
+      </div>
+      < Header/>
+      < Scoreboard/>
+    </div>
+}
 
-app.listen(3000, () => console.log('Example app listening on port 3000!'))
+export default Scoreboard
