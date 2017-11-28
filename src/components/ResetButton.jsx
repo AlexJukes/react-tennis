@@ -2,9 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const ResetButton = ( { onResetClick }) => (
-   <button onClick={() => onResetClick()}>
-    Reset scores
+  <div className="buttons-display">
+     <button onClick={() => onResetClick()}>
+       Reset scores
     </button>
+  </div>
 )
 
 export default ResetButton

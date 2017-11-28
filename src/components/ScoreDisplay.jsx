@@ -3,15 +3,37 @@ import React from 'react'
 class ScoreDisplay extends React.Component {
 
   render() {
-    if(this.props.playerWithAdvantage) {
-      return <div>Advantage: {this.props.playerWithAdvantage} </div>
+
+    const player1Advantage = () => (
+      <div>
+        <div className="point player1">adv</div>
+        <div className="point player2">--</div>
+      </div>
+    )
+
+    const player2Advantage = () => (
+      <div>
+        <div className="point player1">--</div>
+        <div className="point player2">adv</div>
+      </div>
+    )
+
+    const displayScore = () => {
+      if(this.props.playerWithAdvantage === 'player1'){
+        return player1Advantage()
+      }
+      if(this.props.playerWithAdvantage === 'player2'){
+        return player2Advantage()
+      }
+      return this.props.points.map( point => (
+        <div className="point">{point}</div>
+      ))
     }
-    if(this.props.isDeuce) {
-      return <div> Deuce </div>
-    }
-    return this.props.points.map( point => (
-      <div>{point}</div>
-    ))
+
+    return <div className="scores">
+      {displayScore()}
+    </div>
+
   }
 }
 

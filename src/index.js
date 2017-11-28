@@ -5,6 +5,7 @@ import {createStore} from 'redux'
 import tennisApp from './reducers'
 import App from './components/App'
 import Bootstrap from 'bootstrap'
+require('./stylesheets/style.scss')
 
 let store = createStore(tennisApp)
 

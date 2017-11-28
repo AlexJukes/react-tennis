@@ -1,14 +1,12 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { scorePoint } from '../actions'
-import PropTypes from 'prop-types'
+import { Button } from '../../node_modules/bootstrap/js/button.js'
 
 
 class ScoreButton extends React.Component {
   render() {
-    return  <button onClick={() => this.props.onScoreClick(this.props.player)}>
+    return  <button className={this.props.player + " score-button"} onClick={() => this.props.onScoreClick(this.props.player)}>
         {this.props.player} score
-        </button>
+      </button>
   }
 }
 

@@ -11,13 +11,12 @@ const Scores = ({score, winner, onScoreClick, onResetClick}) => {
 
   return winner ?
   <div>
-    <ResetButton onResetClick={() => onResetClick()} />
     <WinnerDisplay winner={winner} />
+    <ResetButton onResetClick={() => onResetClick()} />
   </div> :
   <div>
     <ScoreDisplay
       points={getDisplayPoints(score)}
-      isDeuce={isDeuce(score)}
       playerWithAdvantage={playerWithAdvantage(score)} />
     <ScoreButtonsDisplay
       winner={winner}

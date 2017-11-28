@@ -3,9 +3,11 @@ import ScoreButton from './ScoreButton.jsx'
 
 class ScoreButtonsDisplay extends React.Component {
   render() {
-    return !this.props.winner ? this.props.players.map( player => (
-      <ScoreButton key={player} player={player} onScoreClick={() => this.props.onScoreClick(player)} />
-    )) : null
+    return <div className="buttons-display">
+      {!this.props.winner ? this.props.players.map( player => (
+        <ScoreButton key={player} player={player} onScoreClick={() => this.props.onScoreClick(player)} />
+        )) : null}
+      </div>
   }
 }
 
