@@ -1,5 +1,5 @@
 import { createStore } from 'redux'
-import { scorePoint } from '../src/actions'
+import { scorePoint, resetScore } from '../src/actions'
 import tennisApp from '../src/reducers'
 
 const initialState = {
@@ -120,3 +120,16 @@ describe('scoreIncrease', () => {
   });
 
 });
+
+describe('reset score', () => {
+  it('should reset the score to 0 for both players', () => {
+    //arrange
+    store = createStore(tennisApp, advantagePlayer1)
+
+    //act
+    store.dispatch(resetScore())
+
+    //assert
+    expect(getState()).toEqual(initialState)
+  })
+})

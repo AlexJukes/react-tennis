@@ -7,8 +7,4 @@ const ResetButton = ( { onResetClick }) => (
     </button>
 )
 
-ScoreButton.propTypes = {
-  onResetClick: PropTypes.func.isRequired
-}
-
 export default ResetButton

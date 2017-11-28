@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux'
-import {SCORE_POINT, DECLARE_WINNER} from './actions'
+import {SCORE_POINT, RESET_GAME} from './actions'
 import {calculateScore} from './scoreCalculator'
 
 const initialState = {
@@ -14,6 +14,8 @@ function tennisApp(state = initialState, action) {
   switch (action.type) {
     case SCORE_POINT:
       return calculateScore(action.player, state)
+    case RESET_GAME:
+      return initialState
     default:
       return state
   }
