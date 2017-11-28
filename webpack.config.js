@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   context: path.join(__dirname, 'src'),
@@ -30,5 +31,13 @@ module.exports = {
   resolve: {
     modules: [path.join(__dirname, 'node_modules')],
     extensions: ['.js', '.jsx', '.json', '*']
-  }
+  },
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+      Popper: ['popper.js', 'default']
+    })
+  ]
 };

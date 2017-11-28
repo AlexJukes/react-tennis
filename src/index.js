@@ -4,6 +4,7 @@ import {Provider} from 'react-redux'
 import {createStore} from 'redux'
 import tennisApp from './reducers'
 import App from './components/App'
+import Bootstrap from 'bootstrap'
 
 let store = createStore(tennisApp)
 

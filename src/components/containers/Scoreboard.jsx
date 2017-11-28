@@ -7,14 +7,36 @@ import ScoreDisplay from '../ScoreDisplay.jsx'
 import WinnerDisplay from '../WinnerDisplay.jsx'
 import ResetButton from '../ResetButton.jsx'
 
-const Scores = ({score, winner, onScoreClick, onResetClick}) => (
+const Scores = ({score, winner, onScoreClick, onResetClick}) => {
+
+  return winner ?
   <div>
-    <ScoreDisplay points={getDisplayPoints(score)} />
-    <ScoreButtonsDisplay players={getDisplayPlayers(score)} onScoreClick={(player) => onScoreClick(player)} />
     <ResetButton onResetClick={() => onResetClick()} />
     <WinnerDisplay winner={winner} />
+  </div> :
+  <div>
+    <ScoreDisplay
+      points={getDisplayPoints(score)}
+      isDeuce={isDeuce(score)}
+      playerWithAdvantage={playerWithAdvantage(score)} />
+    <ScoreButtonsDisplay
+      winner={winner}
+      players={getDisplayPlayers(score)}
+      onScoreClick={(player) => onScoreClick(player)} />
   </div>
+}
+
+const isDeuce = (score) => (
+  score.player1 === '40' && score.player2 === '40'
 )
+
+const playerWithAdvantage = (score) => {
+  let playerWithAdvantage = ''
+  Object.keys(score).forEach( player => {
+    return score[player] === 'adv' ? playerWithAdvantage = player : null
+  })
+  return playerWithAdvantage
+}
 
 const getDisplayPoints = (score) => {
   const points = [];
