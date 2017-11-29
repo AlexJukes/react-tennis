@@ -8,7 +8,7 @@ import WinnerDisplay from '../WinnerDisplay.jsx'
 import PlayerDisplay from '../PlayerDisplay.jsx'
 import ResetButton from '../ResetButton.jsx'
 
-const TennisDisplay = ({currentScore, winner, onScoreClick, onResetClick}) => {
+const TennisDisplay = ({currentScore, games, winner, onScoreClick, onResetClick}) => {
 
   return winner ?
   <div className = "winner-display">
@@ -23,6 +23,9 @@ const TennisDisplay = ({currentScore, winner, onScoreClick, onResetClick}) => {
       <div className="points-display">
         <ScoreDisplay points={getDisplayPoints(currentScore)}/>
       </div>
+      <div className="games-display">
+        <ScoreDisplay points={getDisplayPoints(games)}/>
+      </div>
     </div>
     <div className="buttons-display">
       <ScoreButtonsDisplay
@@ -33,16 +36,24 @@ const TennisDisplay = ({currentScore, winner, onScoreClick, onResetClick}) => {
   </div>
 }
 
-const getDisplayPoints = (score) => {
+const getDisplayPoints = (currentScore) => {
   let points = [];
-  Object.keys(score).forEach( player => {
-    points.push(score[player])
+  Object.keys(currentScore).forEach( player => {
+    points.push(currentScore[player])
   })
   if(points.includes('adv')){
     let index = points.indexOf('40')
     points[index] = '--'
   }
   return points
+}
+
+const getDisplayGames = (games) => {
+  let gameScore = [];
+  Object.keys(games).forEach( player => {
+    gameScore.push(games[player])
+  })
+  return gameScore
 }
 
 const getDisplayPlayers = (score) => {
@@ -55,6 +66,7 @@ const getDisplayPlayers = (score) => {
 
 const mapStateToProps = state => ({
   currentScore: state.currentScore,
+  games: state.games,
   winner: state.winner
 });
 
