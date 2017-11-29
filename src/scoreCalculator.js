@@ -1,6 +1,10 @@
+import {initialState} from './reducers.js'
+
 export function calculateScore(player = '', state = {}) {
 
   const currentScore = state.currentScore
+  const resetCurrentScore = initialState.currentScore
+  const games = state.games
   const winner = state.winner
   const opposingPlayer = player === 'player1' ? 'player2' : 'player1'
   const deuce = currentScore[player] === '40' && currentScore[opposingPlayer] === '40'
@@ -15,10 +19,15 @@ export function calculateScore(player = '', state = {}) {
     return deuce ? 'adv' : scoreTable[currentScore]
   }
 
-  function gameIncrease(player) {
-
+  function winGame(player) {
+    const newGameState=  Object.assign(
+      {},
+      state,
+      {currentScore: resetCurrentScore}
+    )
+    newGameState.games[player]++
+    return updateState(newGameState)
   }
-
 
   function playerScores() {
     return Object.assign(
@@ -33,6 +42,7 @@ export function calculateScore(player = '', state = {}) {
   }
 
   if(gamePoint) {
+    return winGame(player)
   }
 
   return updateState({ currentScore: playerScores() })

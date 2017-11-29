@@ -2,7 +2,7 @@ import {combineReducers} from 'redux'
 import {SCORE_POINT, RESET_GAME} from './actions'
 import {calculateScore} from './scoreCalculator'
 
-const initialState = {
+export const initialState = {
   currentScore: {
     player1: '0',
     player2: '0'

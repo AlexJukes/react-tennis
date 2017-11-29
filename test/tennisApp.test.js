@@ -1,22 +1,7 @@
+import { initialState } from '../src/reducers.js'
 import { createStore } from 'redux'
 import { scorePoint, resetScore } from '../src/actions'
 import tennisApp from '../src/reducers'
-
-const initialState = {
-  currentScore: {
-    player1: '0',
-    player2: '0'
-  },
-  games: {
-    player1: 0,
-    player2: 0
-  },
-  sets: {
-    player1: 0,
-    player2: 0
-  },
-  winner: null
-}
 
 const deuce = Object.assign(
   {},
@@ -115,6 +100,7 @@ describe('scoreIncrease', () => {
     expect(getPlayer1Score()).toEqual('40')
     expect(getPlayer2Score()).toEqual('40')
   })
+
 
   it('increases the number of games won for the winning player and resets the points', () => {
     //arrange
