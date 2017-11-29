@@ -5,43 +5,43 @@ import { scorePoint, resetScore } from '../../actions'
 import ScoreButtonsDisplay from '../ScoreButtonsDisplay.jsx'
 import ScoreDisplay from '../ScoreDisplay.jsx'
 import WinnerDisplay from '../WinnerDisplay.jsx'
+import PlayerDisplay from '../PlayerDisplay.jsx'
 import ResetButton from '../ResetButton.jsx'
 
 const Scores = ({score, winner, onScoreClick, onResetClick}) => {
 
   return winner ?
-  <div>
+  <div className = "winner-display">
     <WinnerDisplay winner={winner} />
     <ResetButton onResetClick={() => onResetClick()} />
   </div> :
-  <div>
-    <ScoreDisplay
-      points={getDisplayPoints(score)}
-      playerWithAdvantage={playerWithAdvantage(score)} />
-    <ScoreButtonsDisplay
-      winner={winner}
-      players={getDisplayPlayers(score)}
-      onScoreClick={(player) => onScoreClick(player)} />
+  <div className="score-interface">
+    <div className="score-display">
+      <div className="points-display">
+        <ScoreDisplay points={getDisplayPoints(score)}/>
+      </div>
+      <div className="players-display">
+        <PlayerDisplay players={getDisplayPlayers(score)} />
+      </div>
+    </div>
+    <div className="buttons-display">
+      <ScoreButtonsDisplay
+        winner={winner}
+        players={getDisplayPlayers(score)}
+        onScoreClick={(player) => onScoreClick(player)} />
+    </div>
   </div>
 }
 
-const isDeuce = (score) => (
-  score.player1 === '40' && score.player2 === '40'
-)
-
-const playerWithAdvantage = (score) => {
-  let playerWithAdvantage = ''
-  Object.keys(score).forEach( player => {
-    return score[player] === 'adv' ? playerWithAdvantage = player : null
-  })
-  return playerWithAdvantage
-}
-
 const getDisplayPoints = (score) => {
-  const points = [];
+  let points = [];
   Object.keys(score).forEach( player => {
     points.push(score[player])
   })
+  if(points.includes('adv')){
+    let index = points.indexOf('40')
+    points[index] = '--'
+  }
   return points
 }
 

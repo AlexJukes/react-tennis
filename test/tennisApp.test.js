@@ -111,16 +111,6 @@ describe('scoreIncrease', () => {
     expect(getWinner()).toEqual('player1')
   });
 
-  it('should throw an error if a point has been scored after a game has been won', () => {
-    //arrange
-    store = createStore(tennisApp, player1Win)
-
-    //act and assert
-    expect(() => store.dispatch(scorePoint('player1'))).toThrow('This game has already been won!')
-  });
-
-});
-
 describe('reset score', () => {
   it('should reset the score to 0 for both players', () => {
     //arrange

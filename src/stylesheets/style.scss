@@ -1,22 +1,87 @@
-.scores {
+body {
+  font-family: sans-serif;
+}
+
+.score-interface {
   text-align: center;
+}
+
+.score-display {
   background: #006633;
-  width: 70px;
+  width: 50%;
   padding: 10px;
-  margin: 0 auto;
+  display: inline-block;
+  margin: 20px;
+  border-color: cornflowerblue;
+  border-width: 10;
+  border-style: solid;
+}
+
+.display-block {
+  background: black;
+  padding: 20px;
+  margin: 20 auto;
+  width: 20px;
+  color: #E6EA67;
+  border-width: 1;
+  border-style: solid;
+  border-color: white;
 }
 
 .point {
-  background: black;
-    padding: 20px;
-    margin: 20 auto;
     width: 20px;
-    color: #E6EA67;
+}
+
+.player {
+  width: 200px;
+  text-transform: uppercase;
+}
+
+
+
+.points-display {
+  display: inline-block;
+  margin: 0 20 0 20;
+}
+
+.players-display {
+  display: inline-block;
+  margin: 0 20 0 20;
+}
+
+.scores {
+
+}
+
+button {
+    text-decoration: none;
+    color: white;
+    border: 1px outset;
+    background-color: hotpink;
+    height:50px;
+    width:200px;
+    margin: 20px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    cursor:pointer;
+    font-size: 15px;
+}
+
+button:hover {
+  background-color: white;
+  color: hotpink;
 }
 
 .buttons-display {
   margin: 0 auto;
   text-align: center;
+}
+
+.score-button {
+  margin: 10px;
+  text-transform: uppercase;
+
 }
 
 .winner {

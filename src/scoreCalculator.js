@@ -23,10 +23,6 @@ export function calculateScore(player = '', state = {}) {
     )
   };
 
-  if(winner){
-    throw new Error('This game has already been won!')
-  }
-
   if(score[opposingPlayer] === 'adv') {
     return updateState({score: {player1: '40', player2: '40'}})
   }
