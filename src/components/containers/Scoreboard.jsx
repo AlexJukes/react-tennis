@@ -8,7 +8,7 @@ import WinnerDisplay from '../WinnerDisplay.jsx'
 import PlayerDisplay from '../PlayerDisplay.jsx'
 import ResetButton from '../ResetButton.jsx'
 
-const TennisDisplay = ({score, winner, onScoreClick, onResetClick}) => {
+const TennisDisplay = ({currentScore, winner, onScoreClick, onResetClick}) => {
 
   return winner ?
   <div className = "winner-display">
@@ -18,16 +18,16 @@ const TennisDisplay = ({score, winner, onScoreClick, onResetClick}) => {
   <div className="score-interface">
     <div className="score-display">
       <div className="players-display">
-        <PlayerDisplay players={getDisplayPlayers(score)} />
+        <PlayerDisplay players={getDisplayPlayers(currentScore)} />
       </div>
       <div className="points-display">
-        <ScoreDisplay points={getDisplayPoints(score)}/>
+        <ScoreDisplay points={getDisplayPoints(currentScore)}/>
       </div>
     </div>
     <div className="buttons-display">
       <ScoreButtonsDisplay
         winner={winner}
-        players={getDisplayPlayers(score)}
+        players={getDisplayPlayers(currentScore)}
         onScoreClick={(player) => onScoreClick(player)} />
     </div>
   </div>
@@ -54,7 +54,7 @@ const getDisplayPlayers = (score) => {
 }
 
 const mapStateToProps = state => ({
-  score: state.score,
+  currentScore: state.currentScore,
   winner: state.winner
 });
 

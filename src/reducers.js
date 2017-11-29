@@ -3,9 +3,17 @@ import {SCORE_POINT, RESET_GAME} from './actions'
 import {calculateScore} from './scoreCalculator'
 
 const initialState = {
-  score: {
+  currentScore: {
     player1: '0',
     player2: '0'
+  },
+  games: {
+    player1: 0,
+    player2: 0
+  },
+  sets: {
+    player1: 0,
+    player2: 0
   },
   winner: null
 }

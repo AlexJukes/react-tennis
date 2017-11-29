@@ -3,9 +3,17 @@ import { scorePoint, resetScore } from '../src/actions'
 import tennisApp from '../src/reducers'
 
 const initialState = {
-  score: {
+  currentScore: {
     player1: '0',
     player2: '0'
+  },
+  games: {
+    player1: 0,
+    player2: 0
+  },
+  sets: {
+    player1: 0,
+    player2: 0
   },
   winner: null
 }
@@ -14,7 +22,7 @@ const deuce = Object.assign(
   {},
   initialState,
   {
-    score: {
+    currentScore: {
       player1: '40',
       player2: '40'}
   }
@@ -24,7 +32,7 @@ const advantagePlayer1 = Object.assign(
   {},
   initialState,
   {
-    score: {
+    currentScore: {
       player1: 'adv',
       player2: '40'
     }
@@ -43,13 +51,21 @@ let store
 let getState
 let getPlayer1Score
 let getPlayer2Score
+let getPlayer1Game
+let getPlayer2Game
+let getPlayer1Set
+let getPlayer2Set
 let getWinner
 
 beforeEach(() => {
   store = createStore(tennisApp, initialState)
   getState = () => store.getState()
-  getPlayer1Score = () => getState().score.player1
-  getPlayer2Score = () => getState().score.player2
+  getPlayer1Score = () => getState().currentScore.player1
+  getPlayer2Score = () => getState().currentScore.player2
+  getPlayer1Game = () => getState().games.player1
+  getPlayer2Game = () => getState().games.player2
+  getPlayer1Set = () => getState().sets.player1
+  getPlayer2Set = () => getState().sets.player2
   getWinner = () => getState().winner
 })
 
@@ -100,7 +116,7 @@ describe('scoreIncrease', () => {
     expect(getPlayer2Score()).toEqual('40')
   })
 
-  it('should declare the winner of the game', () => {
+  it('increases the number of games won for the winning player and resets the points', () => {
     //arrange
     store = createStore(tennisApp, advantagePlayer1)
 
@@ -108,8 +124,12 @@ describe('scoreIncrease', () => {
     store.dispatch(scorePoint('player1'))
 
     //assert
-    expect(getWinner()).toEqual('player1')
+    expect(getPlayer1Game()).toEqual(1)
+    expect(getPlayer2Game()).toEqual(0)
+    expect(getState().currentScore).toEqual(initialState.currentScore)
   });
+})
+
 
 describe('reset score', () => {
   it('should reset the score to 0 for both players', () => {
