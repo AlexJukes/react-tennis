@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const ResetButton = ( { onResetClick }) => (
   <div className="buttons-display">
-     <button onClick={() => onResetClick()}>
+     <button className="reset-button" onClick={() => onResetClick()}>
        Reset scores
     </button>
   </div>

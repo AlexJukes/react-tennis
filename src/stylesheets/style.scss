@@ -3,6 +3,14 @@ body {
   background-color: darkslateblue
 }
 
+h1 {
+  text-align: center;
+  color: hotpink;
+  font-size: 50px;
+  color: ivory;
+  margin: 40px;
+}
+
 .score-interface {
   text-align: center;
 }
@@ -77,9 +85,19 @@ button:hover {
   text-transform: uppercase;
 }
 
+.reset-button {
+  margin: 10px;
+  text-transform: uppercase;
+}
+
 .winner {
   text-transform: uppercase;
   text-align: center;
   margin: 30px;
   font-size: 40px;
+  color: cornflowerblue;
+}
+
+.winning-player {
+  color: #E6EA67;
 }
