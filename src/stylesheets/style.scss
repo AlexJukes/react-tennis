@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  background-color: darkslateblue
 }
 
 .score-interface {
@@ -37,8 +38,6 @@ body {
   text-transform: uppercase;
 }
 
-
-
 .points-display {
   display: inline-block;
   margin: 0 20 0 20;
@@ -49,14 +48,14 @@ body {
   margin: 0 20 0 20;
 }
 
-.scores {
-
+.buttons-display {
+  text-align: center;
 }
 
 button {
     text-decoration: none;
     color: white;
-    border: 1px outset;
+    border: 1px solid;
     background-color: hotpink;
     height:50px;
     width:200px;
@@ -73,19 +72,14 @@ button:hover {
   color: hotpink;
 }
 
-.buttons-display {
-  margin: 0 auto;
-  text-align: center;
-}
-
 .score-button {
   margin: 10px;
   text-transform: uppercase;
-
 }
 
 .winner {
   text-transform: uppercase;
-  margin: 0 auto;
   text-align: center;
+  margin: 30px;
+  font-size: 40px;
 }
