@@ -1,5 +1,4 @@
 import React from 'react'
-import Button  from '../../node_modules/bootstrap/js/button.js'
 
 
 class ScoreButton extends React.Component {

@@ -5,7 +5,7 @@ class PlayerDisplay extends React.Component {
   render() {
       return this.props.players.map(
         player => (
-          <div key={player} className="display-block player"> {player} </div>
+          <div contentEditable="true" key={player} className="display-block player"> {player} </div>
         )
       )
     }
