@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import { scorePoint, resetScore } from '../../actions'
+import { scorePoint, resetScore, updateName } from '../../actions'
 import ScoreButtonsDisplay from '../ScoreButtonsDisplay.jsx'
 import ScoreDisplay from '../ScoreDisplay.jsx'
 import WinnerDisplay from '../WinnerDisplay.jsx'
@@ -13,8 +13,10 @@ const TennisDisplay = ({
     games,
     sets,
     winner,
+    displayNames,
     onScoreClick,
-    onResetClick
+    onResetClick,
+    onNameChange
   }) => {
 
   return winner ?
@@ -25,7 +27,7 @@ const TennisDisplay = ({
   <div className="score-interface">
     <div className="score-display">
       <div className="players-display">
-        <PlayerDisplay players={getDisplayPlayers(currentScore)} />
+        <PlayerDisplay players={displayNames} onNameChange={(playerName, newName) => onNameChange(playerName, newName)} />
       </div>
       <div className="points-display">
         <ScoreDisplay points={getDisplayPoints(currentScore)}/>
@@ -40,7 +42,7 @@ const TennisDisplay = ({
     <div className="buttons-display">
       <ScoreButtonsDisplay
         winner={winner}
-        players={getDisplayPlayers(currentScore)}
+        players={getDisplayPlayers(displayNames)}
         onScoreClick={(player) => onScoreClick(player)} />
     </div>
   </div>
@@ -58,24 +60,30 @@ const getDisplayPoints = (points) => {
   return displayPoints
 }
 
-const getDisplayPlayers = (score) => {
-  const players = [];
-  Object.keys(score).forEach( player => {
-    players.push(player)
+const getDisplayPlayers = (displayNames) => {
+  const playerNames = [];
+  Object.keys(displayNames).forEach( playerName => {
+    playerNames.push(displayNames[playerName])
   })
-  return players
+  console.log(playerNames)
+  return playerNames
 }
 
 const mapStateToProps = state => ({
   currentScore: state.currentScore,
   games: state.games,
   sets: state.sets,
-  winner: state.winner
+  winner: state.winner,
+  displayNames: state.displayNames
 });
 
 const mapDispatchToProps = dispatch => ({
     onScoreClick: player => dispatch(scorePoint(player)),
-    onResetClick: () => dispatch(resetScore())
+    onResetClick: () => dispatch(resetScore()),
+    onNameChange: (playerName, newName) => {
+      console.log(playerName, newName)
+      dispatch(updateName(playerName, newName ))
+    }
   });
 
 const Scoreboard = connect(

@@ -1,81 +1,7 @@
 import { initialState } from '../src/reducers.js'
 import { createStore } from 'redux'
-import { scorePoint, resetScore } from '../src/actions'
+import { scorePoint, resetScore, updateName } from '../src/actions'
 import tennisApp from '../src/reducers'
-
-const deuce = Object.assign(
-  {},
-  initialState,
-  {
-    currentScore: {
-      player1: '40',
-      player2: '40'}
-  }
-)
-
-const advantagePlayer1 = Object.assign(
-  {},
-  initialState,
-  {
-    currentScore: {
-      player1: 'adv',
-      player2: '40'
-    }
-  }
-)
-
-const setPointPlayer1 = Object.assign(
-  {},
-  initialState,
-  {
-    currentScore: {
-      player1: 'adv',
-      player2: '40'
-    },
-    games: {
-      player1: 5,
-      player2: 0
-    }
-  }
-)
-
-const setTiePlayer1 = Object.assign(
-  {},
-  initialState,
-  {
-    currentScore: {
-      player1: 'adv',
-      player2: '40'
-    },
-    games: {
-      player1: 5,
-      player2: 5
-    }
-  }
-)
-
-const setAdvantagePlayer1 = Object.assign(
-  {},
-  initialState,
-  {
-    currentScore: {
-      player1: 'adv',
-      player2: '40'
-    },
-    games: {
-      player1: 6,
-      player2: 5
-    }
-  }
-)
-
-const player1Win = Object.assign(
-  {},
-  initialState,
-  {
-    winner: 'player1'
-  }
-)
 
 let store
 let getState
@@ -104,7 +30,6 @@ describe('calculateScore', () => {
   describe('pointIncrease', () => {
 
     it('increases the score for the specified player correctly', () => {
-
       //act
       store.dispatch(scorePoint('player1'))
       store.dispatch(scorePoint('player2'))
@@ -115,7 +40,6 @@ describe('calculateScore', () => {
     });
 
     it('calculates basic scoring correctly', () => {
-
       //act
       store.dispatch(scorePoint('player1'))
       store.dispatch(scorePoint('player1'))
@@ -128,8 +52,16 @@ describe('calculateScore', () => {
 
     it('gives advantage to the player who scored if players are tied on deuce', () => {
       //arange
+      const deuce = Object.assign(
+        {},
+        initialState,
+        {
+          currentScore: {
+            player1: '40',
+            player2: '40'}
+        }
+      )
       store = createStore(tennisApp, deuce)
-
 
       //act
       store.dispatch(scorePoint('player1'))
@@ -141,6 +73,16 @@ describe('calculateScore', () => {
 
     it('returns the score to deuce if the player without an advantage scores', () => {
       //arrange
+      const advantagePlayer1 = Object.assign(
+        {},
+        initialState,
+        {
+          currentScore: {
+            player1: 'adv',
+            player2: '40'
+          }
+        }
+      )
       store = createStore(tennisApp, advantagePlayer1)
 
       //act
@@ -156,6 +98,16 @@ describe('calculateScore', () => {
 
     it('increases the number of games won for the winning player and resets the points', () => {
       //arrange
+      const advantagePlayer1 = Object.assign(
+        {},
+        initialState,
+        {
+          currentScore: {
+            player1: 'adv',
+            player2: '40'
+          }
+        }
+      )
       store = createStore(tennisApp, advantagePlayer1)
 
       //act
@@ -172,6 +124,20 @@ describe('calculateScore', () => {
   describe('winSet', () => {
     it('scores the player a set if they win 6 games and reset game and current score points', () => {
       //arrange
+      const setPointPlayer1 = Object.assign(
+        {},
+        initialState,
+        {
+          currentScore: {
+            player1: 'adv',
+            player2: '40'
+          },
+          games: {
+            player1: 5,
+            player2: 0
+          }
+        }
+      )
       store = createStore(tennisApp, setPointPlayer1)
 
       //act
@@ -188,6 +154,20 @@ describe('calculateScore', () => {
 
       it('scores the player a set if they win 6 games and resets the game and current score points', () => {
         //arrange
+        const setPointPlayer1 = Object.assign(
+          {},
+          initialState,
+          {
+            currentScore: {
+              player1: 'adv',
+              player2: '40'
+            },
+            games: {
+              player1: 5,
+              player2: 0
+            }
+          }
+        )
         store = createStore(tennisApp, setPointPlayer1)
 
         //act
@@ -204,6 +184,20 @@ describe('calculateScore', () => {
 
       it('will take the players to an additional game if the player is not winning by 2 clear games', () => {
         //arrange
+        const setTiePlayer1 = Object.assign(
+          {},
+          initialState,
+          {
+            currentScore: {
+              player1: 'adv',
+              player2: '40'
+            },
+            games: {
+              player1: 5,
+              player2: 5
+            }
+          }
+        )
         store = createStore(tennisApp, setTiePlayer1)
 
         //act
@@ -220,6 +214,20 @@ describe('calculateScore', () => {
 
       it('win a set when score becomes 7 games to 5', () => {
         //arrange
+        const setAdvantagePlayer1 = Object.assign(
+          {},
+          initialState,
+          {
+            currentScore: {
+              player1: 'adv',
+              player2: '40'
+            },
+            games: {
+              player1: 6,
+              player2: 5
+            }
+          }
+        )
         store = createStore(tennisApp, setAdvantagePlayer1)
 
         //act
@@ -236,15 +244,78 @@ describe('calculateScore', () => {
   })
 })
 
+describe('winning the match', () => {
+  it('should declare the winner of the match', () => {
+    //arrange
+    const matchPoint = Object.assign(
+      {},
+      initialState,
+      {
+        currentScore: {
+          player1: 'adv',
+          player2: '40'
+        },
+        games: {
+          player1: 5,
+          player2: 0
+        },
+        sets: {
+          player1: 1,
+          player2: 0
+        }
+      }
+    )
+    store = createStore(tennisApp, matchPoint)
+
+    //act
+    store.dispatch(scorePoint('player1'))
+
+    //assert
+    expect(getWinner()).not.toBeNull()
+    expect(getWinner()).toEqual('player1')
+  })
+})
+
 describe('reset score', () => {
   it('should reset the score to 0 for both players', () => {
     //arrange
-    store = createStore(tennisApp, advantagePlayer1)
+    const matchPoint = Object.assign(
+      {},
+      initialState,
+      {
+        currentScore: {
+          player1: 'adv',
+          player2: '40'
+        },
+        games: {
+          player1: 5,
+          player2: 0
+        },
+        sets: {
+          player1: 1,
+          player2: 0
+        }
+      }
+    )
+    store = createStore(tennisApp, matchPoint)
 
     //act
     store.dispatch(resetScore())
 
     //assert
     expect(getState()).toEqual(initialState)
+  })
+})
+
+describe('update name', () => {
+  it('should update the player name to the new value', () => {
+    //arrange
+    store = createStore(tennisApp, initialState)
+
+    //act
+    store.dispatch(updateName('player1', 'Alex'))
+
+    //assert
+    expect(getState().displayNames.player1).toEqual('Alex')
   })
 })

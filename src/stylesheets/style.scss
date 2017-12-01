@@ -35,6 +35,7 @@ h1 {
   border-width: 1;
   border-style: solid;
   border-color: white;
+
 }
 
 .point {
@@ -42,8 +43,19 @@ h1 {
 }
 
 .player {
+  display: block;
+  margin: 20 0 20 0;
+  font-size: inherit;
   width: 200px;
   text-transform: uppercase;
+}
+
+input::placeholder {
+  color: #E6EA67;
+}
+
+input:focus::-webkit-input-placeholder {
+  color:transparent;
 }
 
 .points-display, .games-display, .sets-display {
