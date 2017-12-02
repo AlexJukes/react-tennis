@@ -21,7 +21,7 @@ const TennisDisplay = ({
 
   return winner ?
   <div className = "winner-display">
-    <WinnerDisplay winner={winner} />
+    <WinnerDisplay winner={displayNames[winner]} />
     <ResetButton onResetClick={() => onResetClick()} />
   </div> :
   <div className="score-interface">
