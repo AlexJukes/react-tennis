@@ -42,7 +42,7 @@ const TennisDisplay = ({
     <div className="buttons-display">
       <ScoreButtonsDisplay
         winner={winner}
-        players={getDisplayPlayers(displayNames)}
+        players={displayNames}
         onScoreClick={(player) => onScoreClick(player)} />
     </div>
   </div>

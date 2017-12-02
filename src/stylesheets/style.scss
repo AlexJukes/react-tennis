@@ -93,12 +93,13 @@ button:hover {
 }
 
 .score-button {
-  margin: 10px;
+  display: inline-block;
+  margin: 10px 10px auto;
   text-transform: uppercase;
 }
 
 .reset-button {
-  margin: 10px;
+  margin: 10px auto;
   text-transform: uppercase;
 }
 
